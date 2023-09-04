@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  server:
+    build:
+      context: ./PriceAlertWeb
+      dockerfile: Dockerfile
+    image: server1
+    container_name: servercontainer1
+    ports:
+      - "8000:8000"
+
+  client:
+    build:
+      context: ./appfrontend
+      dockerfile: Dockerfile
+    image: client1
+    container_name: clientcontainer1
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
